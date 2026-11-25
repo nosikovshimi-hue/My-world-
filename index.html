@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090713">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MY WORLD">
+<meta name="description" content="Твоё личное пространство">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="stylesheet" href="style.css">
+<title>MY WORLD</title>
+</head>
+<body>
+<div class="splash" id="splash">
+  <div class="splash-stars"></div>
+  <img class="splash-logo-image" src="logo-master.png" alt="MY WORLD">
+  <div class="splash-title">MY WORLD</div><div class="splash-sub">ТВОЁ ЛИЧНОЕ ПРОСТРАНСТВО</div>
+  <div class="loading"><i></i></div>
+</div>
+<div class="space-bg" id="spaceBg" aria-hidden="true"></div>
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand"><img class="brand-logo" src="logo-master.png" alt=""><span>MY WORLD</span></div>
+    <button class="round-icon" data-route="settings" aria-label="Настройки профиля">⌘</button>
+  </header>
+  <main id="mainContent">
+    <section class="welcome">
+      <div class="eyebrow">ТВОЯ ЛИЧНАЯ ВСЕЛЕННАЯ</div>
+      <h1>Добро пожаловать,<br><span id="userName">Шимон</span>.</h1>
+      <p>Всё важное — в одном месте.</p>
+    </section>
+    <section class="hero-widgets">
+      <article class="glass date-card" id="calendarLaunch" role="button" tabindex="0" aria-label="Открыть календарь"><span class="widget-icon">▦</span><div><small id="weekday">Сегодня</small><b id="date">21 ноября</b></div><span class="chevron">›</span></article>
+      <article class="glass time-card"><span class="widget-icon">◷</span><div><small>МЕСТНОЕ ВРЕМЯ</small><b id="clock">--:--</b></div></article>
+    </section>
+    <section class="section-title"><h2>Твои пространства</h2><span>Открывай и наполняй</span></section>
+    <section class="quick-grid">
+      <button class="quick-card" data-route="fitness"><span class="quick-icon">⌁</span><b>Спорт</b><small>Тренировки</small></button>
+      <button class="quick-card" data-route="goals"><span class="quick-icon">◎</span><b>Мои цели</b><small>Твои планы</small></button>
+      <button class="quick-card" data-route="travels"><span class="quick-icon">✈</span><b>Путешествия</b><small>Твои маршруты</small></button>
+      <button class="quick-card" data-route="tasks"><span class="quick-icon">✓</span><b>Задачи</b><small><span id="taskCount">0</span> активных</small></button>
+      <button class="quick-card" data-route="notes"><span class="quick-icon">✎</span><b>Заметки</b><small><span id="noteCount">0</span> записей</small></button>
+      <button class="quick-card" data-route="library"><span class="quick-icon">▤</span><b>Библиотека</b><small>Книги и файлы</small></button>
+    </section>
+    <section class="siddur-launch-wrap" aria-label="Сидур">
+      <button class="siddur-launch" id="siddurLaunch" type="button">
+        <span class="siddur-cover-mini"><img src="assets/siddur/cover.png" alt="Обложка сидура"></span>
+        <span class="siddur-launch-copy"><small>ЛИЧНАЯ БИБЛИОТЕКА</small><b dir="rtl" lang="he">סידור</b><span dir="rtl" lang="he">מנחה וערבית · ספרד</span><em>Открыть сидур <i>↗</i></em></span>
+        <span class="siddur-glow" aria-hidden="true">✧</span>
+      </button>
+    </section>
+    <section class="idea glass">
+      <div class="idea-icon">✧</div><div class="idea-copy"><small>ИДЕЯ ДНЯ</small><p id="ideaText">Большие перемены начинаются с маленьких шагов.</p></div><button id="newIdea" aria-label="Новая идея">↻</button>
+    </section>
+    <section class="bottom-space"></section>
+  </main>
+</div>
+<nav class="dock" aria-label="Основная навигация">
+  <button class="dock-item active" data-route="home"><span>⌂</span><small>Главная</small></button>
+  <button class="dock-item" data-route="progress"><span>▥</span><small>Прогресс</small></button>
+  <button class="dock-add" id="quickAdd" aria-label="Создать">＋</button>
+  <button class="dock-item" data-route="world"><span>◎</span><small>Мир</small></button>
+  <button class="dock-item" data-route="settings"><span>⚙</span><small>Настройки</small></button>
+</nav>
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<section class="sheet" id="sheet" aria-modal="true" role="dialog">
+  <div class="sheet-handle"></div><header class="sheet-header"><h2 id="sheetTitle">Раздел</h2><button id="sheetClose" class="close">×</button></header><div id="sheetBody"></div>
+</section>
+<input type="file" id="wallpaperInput" accept="image/*" hidden>
+<section class="siddur-reader" id="siddurReader" aria-hidden="true">
+  <header class="siddur-reader-top">
+    <button class="siddur-back" id="siddurBack" type="button" aria-label="Вернуться на главную">‹</button>
+    <div><b dir="rtl" lang="he">סידור</b><small dir="rtl" lang="he">מנחה וערבית · ספרד</small></div>
+    <a class="siddur-download" href="assets/siddur/siddur.pdf" download="Siddur-Mancha-Arvit-Sefarad.pdf" aria-label="Скачать сидур">↓</a>
+  </header>
+  <div class="siddur-loading" id="siddurLoading">Подготавливаем страницы сидура…</div>
+  <div class="siddur-book-area" id="siddurBookArea">
+    <button class="siddur-edge siddur-edge-prev" id="siddurPrev" type="button" aria-label="Предыдущая страница">‹</button>
+    <div class="siddur-book-stage" id="siddurBookStage" aria-label="Страница сидура. Листай влево или вправо">
+      <div class="siddur-book-page" id="siddurBookPage"><img id="siddurPageImage" alt="Страница сидура" draggable="false"></div>
+      <div class="siddur-page-turner" id="siddurPageTurner" aria-hidden="true">
+        <div class="siddur-page-face siddur-page-front"><img id="siddurTurnFront" alt="" draggable="false"></div>
+        <div class="siddur-page-face siddur-page-back"><img id="siddurTurnBack" alt="" draggable="false"></div>
+      </div>
+    </div>
+    <button class="siddur-edge siddur-edge-next" id="siddurNext" type="button" aria-label="Следующая страница">›</button>
+  </div>
+  <footer class="siddur-reader-bottom">
+    <span id="siddurPageCount">1 / 18</span>
+    <div class="siddur-progress"><i id="siddurProgress"></i></div>
+    <span class="siddur-hint">Листай пальцем</span>
+  </footer>
+</section>
+<script src="app.js"></script>
+</body></html>
